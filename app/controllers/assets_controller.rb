@@ -1,22 +1,19 @@
 class AssetsController < TwibblrController
-  
+  layout nil
   around_filter :asset_check
   
   def stylesheet
-    @format.css { render params[:stylesheet] if stylesheet_safe? }
+    respond_to { |format| format.css { render params[:stylesheet] if stylesheet_safe? } }
   end
   
   def javascript
-    @format.js { render params[:javascript] if javascript_safe? }
+    respond_to { |format| format.js  { render params[:javascript] if javascript_safe? } }
   end
   
   protected
   
     def asset_check
-      respond_to do |format|
-        @format.format
-        yield
-      end
+      yield
     rescue
       raise ActiveRecord::RecordNotFound unless development?
     end
