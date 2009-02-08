@@ -1,5 +1,5 @@
 class PostsController < TwibblrController
   def index
-    render :text => "wtf"
+    # This is my test controller
   end
 end
