@@ -1,5 +1,7 @@
 class PostsController < TwibblrController
   def index
-    # This is my test controller
+  end
+  
+  def show
   end
 end
