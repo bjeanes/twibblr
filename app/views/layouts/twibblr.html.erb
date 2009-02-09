@@ -5,11 +5,20 @@
     <link rel="stylesheet" href="/twibblr/master.css" type="text/css" media="screen" title="Master Twibblr CSS" charset="utf-8" />
   </head>
   <body>
-    <header></header>
-    <nav></nav>
+    <header><h1>Twibblr-Assisted Site</h1></header>
+    <nav>
+      <h1>Archives</h1>
+      <ul>
+        <ol>September 2008</ol>
+        <ol>August 2008</ol>
+        <ol>July 2008</ol>
+        <ol>June 2008</ol>
+      </ul>
+    </nav>
     <section>
       <%= yield %>
     </section>
     <nav></nav>
+    <footer>&copy; <%= Time.zone.now.year %> A Developer</footer>
   </body>
 </html>
