@@ -1,9 +1,25 @@
+YEAR_REGEX  = /\d{4}/
+MONTH_REGEX = /(?:0?[1-9]|1[012])/
+DAY_REGEX   = /(?:0?[1-9]|[12][0-9]|3[01])/
+PARAM_REGEX = /\d+(-(?:([a-z0-9][a-z0-9_-]?)+?))?/
+
 ActionController::Routing::Routes.draw do |map|
-  map.posts "posts", :controller => "posts"
-  
-  map.with_options :controller => "assets" do |assets|
-    assets.connect "twibblr"
-    assets.connect "twibblr/:stylesheet.css", :action => "stylesheet"
-    assets.connect "twibblr/:javascript.js",  :action => "javascript"
+  map.with_options :conditions => {:method => :get} do |get|
+    get.with_options :controller => "posts" do |posts|
+      posts.with_options :action => "index" do |show_posts|
+        show_posts.map ":year",             :requirements => {:year => YEAR_REGEX}
+        show_posts.map ":year/:month",      :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX}
+        show_posts.map ":year/:month/:day", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX}
+      end
+    
+      posts.connect ":year/:month/:day/:id", :action => "show", :requirements => 
+                    {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX, :id => PARAM_REGEX}
+    end
+    
+    get.with_options :controller => "assets" do |assets|
+      assets.connect "twibblr"
+      assets.connect "twibblr/:stylesheet.css", :action => "stylesheet"
+      assets.connect "twibblr/:javascript.js",  :action => "javascript"
+    end
   end
 end
