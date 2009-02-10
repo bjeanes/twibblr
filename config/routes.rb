@@ -6,15 +6,12 @@ PARAM_REGEX = /\d+(?:-[a-z0-9_-]+?)?/
 ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:method => :get} do |get|
     get.with_options :controller => "posts" do |posts|
-      posts.with_options :action => "index" do |index|
-        index.posts "/posts"
-        index.formatted_posts "/posts.:format"
-      end
-      
-      posts.with_options :action => "archive" do |archive|
-        archive.map "/:year",             :requirements => {:year => YEAR_REGEX}
-        archive.map "/:year/:month",      :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX}
-        archive.map "/:year/:month/:day", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX}
+      posts.with_options :action => "index" do |list_posts|
+        list_posts.posts "/posts"
+        list_posts.formatted_posts "/posts.:format"
+        list_posts.map "/:year",             :requirements => {:year => YEAR_REGEX}
+        list_posts.map "/:year/:month",      :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX}
+        list_posts.map "/:year/:month/:day", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX}
       end
       
       posts.map "/tags/:tag", :action => "by_tag"

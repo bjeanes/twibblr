@@ -1,15 +1,11 @@
 class PostsController < TwibblrController
+  before_filter :filter_by_time, :only => [:index, :show]
+  
   def index
-    @posts = Post.find(:all)
-
     respond_to do |format|
       format.html
       format.rss { render :layout => false }
     end
-  end
-  
-  def archive
-    # show posts in a certain time period (year, month, day, etc)
   end
   
   def by_tag
@@ -20,7 +16,7 @@ class PostsController < TwibblrController
   end
 
   def show
-    @post = Post.find(params[:id], :include => :comments)
+    @post = @posts.find(params[:id], :include => :comments)
 
     @comments = @post.comments
     @comment = Comment.new
@@ -30,4 +26,15 @@ class PostsController < TwibblrController
       format.rss { render :layout => false }
     end
   end
+  
+  protected
+  
+    # TODO: this needs to be cleaner!!!
+    def filter_by_time
+      @posts = Post
+      @posts = @posts.in_year(params[:year]) if params[:year]
+      @posts = @posts.in_month(params[:month]) if params[:month]
+      @posts = @posts.in_day(params[:day]) if params[:day]
+      @posts = @posts.all
+    end
 end

@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
   %w{year month day}.each do |time|
     delegate time, :to => :created_at
-    named_scope :"in_#{time}", lambda { |time| {:conditions => ["#{time.upcase}(created_at) = ?", time] } } 
+    named_scope :"in_#{time}", lambda { |num| {:conditions => ["#{time.upcase}(created_at) = ?", num] } } 
   end
   
   def date
