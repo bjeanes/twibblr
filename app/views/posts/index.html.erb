@@ -1,1 +1,10 @@
-TEST
+<% content_for :head do %>
+  <link href="/posts.rss" rel="alternate" title="Blog Posts" type="application/rss+xml" />
+<% end %>
+
+<% @posts.each do |post| %>
+  <article>
+    <h1><%= post.title %></h1>
+    <%= post.body %>
+  </article>
+<% end %>
