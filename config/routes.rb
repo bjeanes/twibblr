@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
         archive.map "/:year/:month/:day", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX}
       end
       
-      posts.map "/posts/tag/:tag", :action => "by_tag"
+      posts.map "/tags/:tag", :action => "by_tag"
     
       options = {:action => "show", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX, :id => PARAM_REGEX}}
     

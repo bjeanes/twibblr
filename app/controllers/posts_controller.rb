@@ -13,7 +13,10 @@ class PostsController < TwibblrController
   end
   
   def by_tag
-    Tag.find_by_permalink(params[:tag]).posts
+    @posts = Tag.find_by_permalink(params[:tag]).posts
+  rescue
+    flash[:error] = "Tag '#{params[:tag]}' does not exist."
+    redirect_to :action => :index
   end
 
   def show
