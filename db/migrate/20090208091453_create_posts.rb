@@ -1,7 +1,7 @@
 class CreatePosts < ActiveRecord::Migration
   def self.up
     create_table :posts, :force => true do |t|
-      t.string :title, :permalink
+      t.string :title
       t.text :body
       t.timestamps
     end
