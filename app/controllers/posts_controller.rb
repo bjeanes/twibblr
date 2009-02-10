@@ -25,7 +25,6 @@ class PostsController < TwibblrController
     @comments = @post.comments
     @comment = Comment.new
 
-    @extended_meta_data = true
     respond_to do |format|
       format.html # show.html.erb
       format.rss { render :layout => false }
