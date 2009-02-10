@@ -1,11 +1,19 @@
 class PostsController < TwibblrController
   def index
-    @posts = Post.find(:all, :order => "created_at DESC")
+    @posts = Post.find(:all)
 
     respond_to do |format|
       format.html
       format.rss { render :layout => false }
     end
+  end
+  
+  def archive
+    # show posts in a certain time period (year, month, day, etc)
+  end
+  
+  def by_tag
+    Tag.find_by_permalink(params[:tag]).posts
   end
 
   def show
