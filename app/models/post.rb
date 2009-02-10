@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
+  default_scope :order => "created_at DESC"
+  
   has_many :comments, :order => "created_at ASC"
-  has_and_belongs_to_many :tags
+  has_and_belongs_to_many :tags, :order => "name ASC"
   
   named_scope :archive, :group => "month(created_at)"
 
