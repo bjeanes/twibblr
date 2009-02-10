@@ -7,8 +7,11 @@ class Post < ActiveRecord::Base
   named_scope :archive, :group => "month(created_at)"
 
   validates_presence_of :body, :title
-  
-  delegate :day, :month, :year, :to => :created_at
+
+  %w{year month day}.each do |time|
+    delegate time, :to => :created_at
+    named_scope :"in_#{time}", lambda { |time| {:conditions => ["#{time.upcase}(created_at) = ?", time] } } 
+  end
   
   def date
     created_at.to_date.to_s(:long_ordinal)
