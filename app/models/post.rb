@@ -4,7 +4,9 @@ class Post < ActiveRecord::Base
   
   named_scope :archive, :group => "month(created_at)"
 
-  validates_presence_of :text, :title
+  validates_presence_of :body, :title
+  
+  delegate :day, :month, :year, :to => :created_at
   
   def date
     created_at.to_date.to_s(:long_ordinal)
