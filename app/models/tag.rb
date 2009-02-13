@@ -11,6 +11,12 @@ class Tag < ActiveRecord::Base
   def to_param
     permalink
   end
+
+  def self.[](identifier)
+    identifier.is_a?(Fixnum) ? find(identifier) : find(:first, :conditions => ["name = :name OR permalink = :name", {:name => identifier.to_s}])
+  rescue
+    nil
+  end
   
   private
   
