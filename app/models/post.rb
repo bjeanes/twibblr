@@ -20,6 +20,10 @@ class Post < ActiveRecord::Base
   def to_s
     title
   end
+
+  def link
+    @link ||= "/#{created_at.year}/#{created_at.month}/#{created_at.day}/#{to_param}"
+  end
   
   def to_param
     if title.blank?
