@@ -5,11 +5,11 @@ class AssetsController < TwibblrController
   PUBLIC_DIR = File.join(::TWIBBLR_ROOT, 'public')
   
   def stylesheet
-    respond_to { |format| format.css { send_file(File.join(PUBLIC_DIR, 'stylesheets', "#{params[:stylesheet]}.css")) } }
+    respond_to { |format| format.css { send_file(File.join(PUBLIC_DIR, 'stylesheets', "#{params[:stylesheet]}.css"), :type => "text/css") } }
   end
   
   def javascript
-    respond_to { |format| format.js  { send_file(File.join(PUBLIC_DIR, 'javascripts', "#{params[:javascript]}.js")) } }
+    respond_to { |format| format.js  { send_file(File.join(PUBLIC_DIR, 'javascripts', "#{params[:javascript]}.js"), :type => "text/javascript") } }
   end
 
   def image
