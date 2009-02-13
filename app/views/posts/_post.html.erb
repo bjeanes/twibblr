@@ -1,0 +1,8 @@
+<div class="post">
+  <h1 class="title"><%= post.title.titleize %></h1>
+  <p class="byline"><small>Posted on <%= post.created_at.strftime("%B %d, %Y") %> | <a href="#">Edit Post</a></small></p>
+  <div class="entry">
+    <%= truncate(simple_format(post.body), 250, ' ... (continued)') %>
+  </div>
+  <p class="meta"><a href="#" class="more">Read More</a> &nbsp;&nbsp;&nbsp; <a href="#" class="comments">Comments (1337)</a></p>
+</div>
