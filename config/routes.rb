@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:method => :get} do |get|
     get.with_options :controller => "posts" do |posts|
       posts.with_options :action => "index" do |list_posts|
+        list_posts.root
         list_posts.posts "/posts"
         list_posts.formatted_posts "/posts.:format"
         list_posts.map "/:year",             :requirements => {:year => YEAR_REGEX}
@@ -23,9 +24,12 @@ ActionController::Routing::Routes.draw do |map|
     end
     
     get.with_options :controller => "assets" do |assets|
-      assets.connect "/twibblr"
+#      assets.connect "/twibblr"
       assets.connect "/twibblr/:stylesheet.css", :action => "stylesheet"
       assets.connect "/twibblr/:javascript.js",  :action => "javascript"
+      %w{jpg png gif jpeg}.each do |ext|
+        assets.connect "/twibblr/:image.#{ext}", :action => "image"
+      end
     end
   end
 end

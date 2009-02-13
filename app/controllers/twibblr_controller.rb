@@ -9,7 +9,7 @@ class TwibblrController < ApplicationController
     def development?
       RAILS_ENV == "development"
     end
-    
+
     def choose_layout
       # This ivar could be set by some form of site config later
       @layout ||= "twibblr"
