@@ -2,6 +2,7 @@ class PostsController < TwibblrController
   before_filter :filter_by_time, :only => [:index, :show]
   
   def index
+    @posts = @posts.all
     respond_to do |format|
       format.html
       format.rss { render :layout => false }
@@ -16,7 +17,7 @@ class PostsController < TwibblrController
   end
 
   def show
-    @post = @posts.find(params[:id], :include => :comments)
+    @post = @posts.find(params[:id].to_i, :include => :comments)
 
     @comments = @post.comments
     @comment = Comment.new
@@ -35,6 +36,5 @@ class PostsController < TwibblrController
       @posts = @posts.in_year(params[:year]) if params[:year]
       @posts = @posts.in_month(params[:month]) if params[:month]
       @posts = @posts.in_day(params[:day]) if params[:day]
-      @posts = @posts.all
     end
 end

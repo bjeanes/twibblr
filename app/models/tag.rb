@@ -1,7 +1,7 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :posts, :order => "created_at ASC"
   
-  before_save :set_permalink
+  before_create :set_permalink
   before_save :lowercase_name
   
   def to_s
@@ -21,7 +21,7 @@ class Tag < ActiveRecord::Base
   private
   
   def set_permalink
-    self.permalink = name.parameterize
+    self.permalink = name.parameterize if permalink.blank?
   end
   
   def lowercase_name
