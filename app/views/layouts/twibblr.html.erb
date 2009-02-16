@@ -48,7 +48,7 @@
             <h2>Tags</h2>
             <ul>
               <% render_tags do |tag| %>
-                <li><%= link_to "#{tag} (#{tag.posts.count})", "/tags/#{tag.permalink}" %></li>
+                <li><%= link_to "#{tag} (#{tag.posts_count})", "/tags/#{tag.permalink}" %></li>
               <% end %>
             </ul>
           </li>
