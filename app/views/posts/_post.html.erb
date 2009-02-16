@@ -1,5 +1,5 @@
 <div class="post">
-  <h1 class="title"><%= post.title.titleize %></h1>
+  <h1 class="title"><%= link_to post.title.titleize, post.link %></h1>
   <p class="byline"><small>Posted on <%= post.created_at.strftime("%B %d, %Y") %> | <a href="#">Edit Post</a></small></p>
   <div class="entry">
     <% if controller.action_name == "show" %>
