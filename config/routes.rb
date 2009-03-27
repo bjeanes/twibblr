@@ -17,7 +17,8 @@ ActionController::Routing::Routes.draw do |map|
       
       posts.map "/tags/:tag", :action => "by_tag"
     
-      options = {:action => "show", :requirements => {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX, :id => PARAM_REGEX}}
+      options = {:action => "show", :requirements => 
+        {:year => YEAR_REGEX, :month => MONTH_REGEX, :day => DAY_REGEX, :id => PARAM_REGEX}}
     
       posts.post "/:year/:month/:day/:id", options
       posts.formatted_post "/:year/:month/:day/:id.:format", options
@@ -25,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.namespace :admin, :namespace => "twibblr/" do |admin|
+    admin.root :controller => 'admin', :action => 'index'
     admin.resources :posts
+    admin.resources :tags
   end
 end

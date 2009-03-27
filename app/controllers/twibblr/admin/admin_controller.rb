@@ -1,7 +1,12 @@
 module Twibblr
   module Admin
     class AdminController < ::Twibblr::BaseController
-      before_filter :ensure_login
+      # before_filter :ensure_login
+      layout 'twibblr_admin'
+    
+      def index
+        
+      end
     
       protected
     
