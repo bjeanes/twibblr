@@ -22,14 +22,5 @@ ActionController::Routing::Routes.draw do |map|
       posts.post "/:year/:month/:day/:id", options
       posts.formatted_post "/:year/:month/:day/:id.:format", options
     end
-    
-    get.with_options :controller => "assets" do |assets|
-#      assets.connect "/twibblr"
-      assets.connect "/twibblr/:stylesheet.css", :action => "stylesheet"
-      assets.connect "/twibblr/:javascript.js",  :action => "javascript"
-      %w{jpg png gif jpeg}.each do |ext|
-        assets.connect "/twibblr/:image.#{ext}", :action => "image"
-      end
-    end
   end
 end
