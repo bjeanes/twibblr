@@ -2,7 +2,10 @@ module Twibblr::MainHelper
   def render_posts(*args, &block)
     # if they are fetching posts in the controller
     # then awesome(!) otherwise get it for them
-    posts = @posts || Post.all(*args)
+    posts = @posts || Twibblr::Post
+    
+    # @posts can be Post from controller
+    posts = posts.all(*args) if posts == Twibblr::Post
 
     if block_given?
       posts.each do |post|
@@ -19,7 +22,7 @@ module Twibblr::MainHelper
     options = {:order => "name"}.merge(args.extract_options!)
     args << options
     
-    (@tags || Tag.all(*args)).each {|tag| yield(tag)}
+    (@tags || Tag.in_use.all(*args)).each {|tag| yield(tag)}
   end
   
   def site_name

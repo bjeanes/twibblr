@@ -1,10 +1,12 @@
 class Twibblr::Tag < ActiveRecord::Base
   set_table_name :twibblr_tags
   
-  default_scope :order => "posts_count", :conditions => ["posts_count > ?", 0]
+  default_scope :order => "posts_count"
   
   has_many :posts_tags
   has_many :posts, :through => :posts_tags, :order => "created_at ASC"
+  
+  named_scope :in_use, :conditions => "posts_count > 0"
   
   before_create :set_permalink
   before_save :lowercase_name

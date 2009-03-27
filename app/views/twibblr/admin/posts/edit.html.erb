@@ -1,0 +1,15 @@
+<% form_for :post, @post, :url => admin_post_path(@post), :html => {:method => :put} do |f| %>
+  <%= error_messages_for :post %>
+  <p>
+    <%= f.label :title %>
+    <br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %>
+    <br />
+    <%= f.text_area :body %>
+  </p>
+  
+  <%= f.submit "Update" %>
+<% end %>
