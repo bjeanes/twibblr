@@ -9,7 +9,7 @@ module Twibblr::MainHelper
         render_post(post, &block)
       end
     else
-      render :partial => posts
+      render :partial => 'post', :collection => posts
     end
   end
 
