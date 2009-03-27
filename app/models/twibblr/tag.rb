@@ -1,5 +1,5 @@
 class Twibblr::Tag < ActiveRecord::Base
-  default_scope :order => "posts_count"
+  default_scope :order => "posts_count", :conditions => ["posts_count > ?", 0]
   
   has_many :posts_tags
   has_many :posts, :through => :posts_tags, :order => "created_at ASC"
