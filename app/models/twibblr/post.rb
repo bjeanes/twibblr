@@ -1,4 +1,6 @@
 class Twibblr::Post < ActiveRecord::Base
+  set_table_name :twibblr_posts
+  
   default_scope :order => "created_at DESC"
   
   has_many :comments, :order => "created_at ASC"

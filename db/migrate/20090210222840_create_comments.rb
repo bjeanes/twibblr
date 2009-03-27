@@ -1,6 +1,6 @@
 class CreateComments < ActiveRecord::Migration
   def self.up
-    create_table :comments do |t|
+    create_table :twibblr_comments do |t|
       t.references :post
       t.text :body
       t.string :name
@@ -11,6 +11,6 @@ class CreateComments < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :comments
+    drop_table :twibblr_comments
   end
 end

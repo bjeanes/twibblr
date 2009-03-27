@@ -1,4 +1,6 @@
 class Twibblr::Tag < ActiveRecord::Base
+  set_table_name :twibblr_tags
+  
   default_scope :order => "posts_count", :conditions => ["posts_count > ?", 0]
   
   has_many :posts_tags
