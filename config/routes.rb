@@ -23,4 +23,8 @@ ActionController::Routing::Routes.draw do |map|
       posts.formatted_post "/:year/:month/:day/:id.:format", options
     end
   end
+  
+  map.namespace :admin, :namespace => "twibblr/" do |admin|
+    admin.resources :posts
+  end
 end
