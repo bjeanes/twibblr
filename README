@@ -10,4 +10,13 @@ Install
     # run rake twibblr:install if you don't see instructions
     rake db:migrate
 
+
+To do
+=====
+
+* use twitter to authenticate for admin
+* show tweets in feeds \
+* github commits        \____ use STI
+* flickr                /
+
 Copyright (c) 2009 Bodaniel Jeanes, released under the MIT license
