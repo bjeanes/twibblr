@@ -1,7 +1,7 @@
 # Define a master controller for plugin to have defaults set everywhere
 module Twibblr
   class BaseController < ::ApplicationController  
-    helper :twibblr
+    helper 'twibblr/main'
     filter_parameter_logging :password
     layout :choose_layout
   
