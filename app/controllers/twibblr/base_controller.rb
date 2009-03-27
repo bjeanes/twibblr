@@ -14,8 +14,7 @@ module Twibblr
       end
 
       def choose_layout
-        # This ivar could be set by some form of site config later
-        @layout ||= "twibblr"
+        CONFIG['layout']
       end
   end
 end
