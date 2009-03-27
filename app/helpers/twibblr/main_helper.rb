@@ -21,6 +21,14 @@ module Twibblr::MainHelper
     
     (@tags || Tag.all(*args)).each {|tag| yield(tag)}
   end
+  
+  def site_name
+    config['site_name'].titleize || 'My website'
+  end
+  
+  def config
+    Twibblr::CONFIG
+  end
 
   private
 

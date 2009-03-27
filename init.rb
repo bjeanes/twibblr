@@ -1,10 +1,13 @@
-# We want to reload all the controllers, helpers, and 
-# models if we are in development mode:
+require 'yaml'
+
+# This ensures that helpers reload in development as well
 ActiveSupport::Dependencies.load_once_paths.clear if RAILS_ENV == "development"
 
-module Twibblr
-  ROOT = File.expand_path(File.dirname(__FILE__))  
+module ::Twibblr
+  CONFIG = YAML.load_file(File.join(RAILS_ROOT, 'config', 'twibblr.yml'))
 end
+
+Twibblr::ROOT = self.directory
 
 # Load plug-in initializers
 Dir.chdir(File.join(Twibblr::ROOT, "config", "initializers")) do
