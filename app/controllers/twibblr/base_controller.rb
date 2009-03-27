@@ -7,7 +7,7 @@ module Twibblr
   
     protected
     
-      include Authenticationon
+      include Authentication
   
       def development?
         RAILS_ENV == "development"

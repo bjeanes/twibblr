@@ -1,0 +1,20 @@
+<div id="sidebar">
+        <ul>
+          <li>
+            <h2>Updates:</h2>
+            <ul>
+              <% render_posts(:limit => 5) do |post| %>
+                <li><%= link_to post.title, post.link %></li>
+              <% end %>
+            </ul>
+          </li>
+          <li>
+            <h2>Tags</h2>
+            <ul>
+              <% render_tags do |tag| %>
+                <li><%= link_to "#{tag} (#{tag.posts_count})", "/tags/#{tag.permalink}" %></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
