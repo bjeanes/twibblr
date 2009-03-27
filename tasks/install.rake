@@ -1,7 +1,9 @@
 namespace :twibblr do
-  task :install do
-    # From railscasts #149
-    system "rsync -ruv vendor/plugins/twibblr/db/migrate db"
-    system "rsync -ruv --delete vendor/plugins/twibblr/public/ public/twibblr"
+  task :install => [:environment] do
+    require File.join(File.dirname(__FILE__), '..', 'install')
+  end
+  
+  task :uninstall do
+    require File.join(File.dirname(__FILE__), '..', 'uninstall')
   end
 end
