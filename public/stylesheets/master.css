@@ -7,7 +7,7 @@ Released for free under a Creative Commons Attribution 2.5 Canada License
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFFF url(/twibblr/img01.jpg) repeat-x;
+	background: #FFFFFF url(../images/img01.jpg) repeat-x;
 	font-size: 13px;
 	color: #666666;
 }
@@ -57,7 +57,7 @@ a:hover {
 	width: 760px;
 	height: 200px;
 	margin: 0 auto;
-	background: url(/twibblr/img02.jpg) no-repeat left center;
+	background: url(../images/img02.jpg) no-repeat left center;
 }
 
 #logo {
@@ -95,7 +95,7 @@ a:hover {
 #s {
 	width: 190px;
 	padding: 3px 5px;
-	background: #FFFFFF url(/twibblr/img03.gif) repeat-x;
+	background: #FFFFFF url(../images/img03.gif) repeat-x;
 	border: 1px solid #FFFFFF;
 }
 
@@ -138,12 +138,12 @@ a:hover {
 
 .meta .more {
 	padding-left: 20px;
-	background: url(/twibblr/img04.gif) no-repeat left center;
+	background: url(../images/img04.gif) no-repeat left center;
 }
 
 .meta .comments {
 	padding-left: 20px;
-	background: url(/twibblr/img05.gif) no-repeat left center;
+	background: url(../images/img05.gif) no-repeat left center;
 }
 
 /* Sidebar */
@@ -167,7 +167,7 @@ a:hover {
 
 #sidebar li li {
 	padding-left: 10px;
-	background: url(/twibblr/img06.gif) no-repeat left center;
+	background: url(../images/img06.gif) no-repeat left center;
 	border-bottom: 1px dotted #CCCCCC;
 }
 
@@ -189,7 +189,7 @@ a:hover {
 #footer {
 	clear: both;
 	padding: 30px 0;
-	background: url(/twibblr/img07.gif) repeat-x;
+	background: url(../images/img07.gif) repeat-x;
 	text-align: center;
 	font-size: smaller;
 }
@@ -269,7 +269,7 @@ th {
 
 	background: #717170;
 
-	background-image:url(/twibblr/table-bg.jpg); background-repeat:repeat-x;
+	background-image:url(../images/table-bg.jpg); background-repeat:repeat-x;
 
 	height: 29px;
 
