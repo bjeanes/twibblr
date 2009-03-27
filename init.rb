@@ -1,5 +1,4 @@
 require 'yaml'
-require 'twibblr/authentication'
 
 # This ensures that helpers reload in development as well
 ActiveSupport::Dependencies.load_once_paths.clear if RAILS_ENV == "development"

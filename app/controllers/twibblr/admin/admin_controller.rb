@@ -1,7 +1,7 @@
 module Twibblr
   module Admin
     class AdminController < ::Twibblr::BaseController
-      # before_filter :ensure_login
+      before_filter :log_in_required
       layout 'twibblr_admin'
     
       def index
@@ -10,10 +10,9 @@ module Twibblr
     
       protected
     
-        def ensure_login
-          unless logged_in? && authorised?
-            flash[:error] = "You must have permission to access this resource."
-            redirect_to root_path
+        def log_in_required
+          authenticate_or_request_with_http_basic do |login, password|
+            login == CONFIG['username'].to_s && password == CONFIG['password'].to_s
           end
         end
     end

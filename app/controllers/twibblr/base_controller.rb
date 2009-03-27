@@ -6,8 +6,6 @@ module Twibblr
     layout :choose_layout
   
     protected
-    
-      include Authentication
   
       def development?
         RAILS_ENV == "development"
