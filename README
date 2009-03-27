@@ -1,13 +1,13 @@
 Twibblr
 =======
 
-Introduction goes here.
+A Rails Engine for adding blogging (and much more to come later, such as github commit history, tweets, flicer integration, etc) to an existing site. The aim is to have completely non-conflicting models, controllers, et cetera and to allow mounting the system anywhere (/posts, /subdir/posts, etc)
 
-
-Example
+Install
 =======
 
-Example goes here.
-
+    script/plugin install git://github.com/bjeanes/twibblr.git
+    # run rake twibblr:install if you don't see instructions
+    rake db:migrate
 
 Copyright (c) 2009 Bodaniel Jeanes, released under the MIT license
