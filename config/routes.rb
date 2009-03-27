@@ -5,7 +5,7 @@ PARAM_REGEX = /\d+(?:-[a-z0-9_-]+?)?/
 
 ActionController::Routing::Routes.draw do |map|
   map.with_options :conditions => {:method => :get} do |get|
-    get.with_options :controller => "posts" do |posts|
+    get.with_options :controller => "twibblr/posts" do |posts|
       posts.with_options :action => "index" do |list_posts|
         list_posts.root
         list_posts.posts "/posts"

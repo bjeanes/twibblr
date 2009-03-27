@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Twibblr::Comment < ActiveRecord::Base
   belongs_to :post  
   validates_presence_of :name, :email
 end

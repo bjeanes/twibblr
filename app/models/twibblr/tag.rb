@@ -1,4 +1,4 @@
-class Tag < ActiveRecord::Base
+class Twibblr::Tag < ActiveRecord::Base
   default_scope :order => "posts_count"
   
   has_many :posts_tags
