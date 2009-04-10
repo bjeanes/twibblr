@@ -10,6 +10,8 @@ class Twibblr::Post < ActiveRecord::Base
   named_scope :archive, :group => "month(created_at)"
 
   validates_presence_of :body, :title
+  
+  before_save :cache_body_as_html
 
   %w{year month day}.each do |time|
     delegate time, :to => :created_at
@@ -35,4 +37,22 @@ class Twibblr::Post < ActiveRecord::Base
       "#{id}-#{title.parameterize}"
     end
   end
+  
+  protected ##############################################################################
+  
+    def cache_body_as_html
+      self.html_body = render_html_body
+    end
+    
+    # This is a bit of a no-no but it
+    # means the markdown/textile generation
+    # only has to be done on save and not
+    # on every page load.
+    # TODO: replace this with fragment caching
+    #       later...
+    def render_html_body
+      # FIXME actually render the text
+      renderer.new(body).to_html
+    end
+    
 end
