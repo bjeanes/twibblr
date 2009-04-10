@@ -30,7 +30,7 @@ module Twibblr::MainHelper
   end
   
   def config
-    Twibblr::CONFIG
+    Twibblr::Config
   end
 
   private

@@ -12,7 +12,7 @@ module Twibblr
       end
 
       def choose_layout
-        CONFIG['layout']
+        Config['layout']
       end
   end
 end

@@ -7,9 +7,12 @@ config = Rails.configuration
 # We can do gem dependencies like in Rails' evironment.rb
 # because load_gems is called twice, once before load_plugins
 # and once after to get plugin dependencies
-config.gem "ultraviolet", :lib => "uv"
+# config.gem "ultraviolet", :lib => "uv"
+# config.gem "harsh"
 
 # Load plug-in initializers
-Dir.chdir(File.join(Twibblr::ROOT, "config", "initializers")) do
+# NOTE: This will get loaded BEFORE Rails' initializers,
+#       which don't even run if the gem checking fails
+Dir.chdir(File.join(Twibblr.root, "config", "initializers")) do
   Dir["*.rb"].each { |file| load(file) }
 end
