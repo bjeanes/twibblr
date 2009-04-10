@@ -1,5 +1,5 @@
 namespace :twibblr do
-  task :install => [:environment] do
+  task :install do
     require File.join(File.dirname(__FILE__), '..', 'install')
   end
   
