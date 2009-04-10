@@ -6,14 +6,19 @@ module ::Twibblr
   end
   
   def self.renderer
+    empty = Class.new do
+      attr_accessor :to_html
+      def initialize(body); self.to_html = "!!! #{body} !!!"; end
+    end
+    
     @@renderer ||= begin
       case Config['renderer']
       when 'markdown'
-        # TODO require different markdown libraries until one provides Markdown constant
-        const_set '::Markdown', Class.new { def initialize(*args);end; def to_html; ''; end; }
+        empty
       when 'textile'
         require 'RedCloth'
         RedCloth
+      when nil then empty        
       else raise "Unknown renderer"
       end          
     end

@@ -1,4 +1,4 @@
-<% form_for :post, @post, :url => admin_posts_path do |f| %>
+<% form_for :post, @post, :url => admin_posts_path, :html => {:id => "admin_new_post_form"} do |f| %>
   <%= error_messages_for :post %>
   <p>
     <%= f.label :title %>
@@ -13,3 +13,13 @@
   
   <%= f.submit "Create" %>
 <% end %>
+
+<div id="preview">
+  
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $('#post_body').keypress(function(){
+    $('#preview').load("<%= preview_admin_posts_path %>", $('#admin_new_post_form').serializeArray());
+  });
+</script>

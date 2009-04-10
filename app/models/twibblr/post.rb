@@ -12,6 +12,8 @@ class Twibblr::Post < ActiveRecord::Base
   validates_presence_of :body, :title
   
   before_save :cache_body_as_html
+  
+  delegate :renderer, :to => Twibblr
 
   %w{year month day}.each do |time|
     delegate time, :to => :created_at
@@ -36,6 +38,10 @@ class Twibblr::Post < ActiveRecord::Base
     else
       "#{id}-#{title.parameterize}"
     end
+  end
+  
+  def html_body
+    self[:html_body] ||= render_html_body
   end
   
   protected ##############################################################################

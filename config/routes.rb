@@ -27,7 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.namespace :admin, :namespace => "twibblr/" do |admin|
     admin.root :controller => 'admin', :action => 'index'
-    admin.resources :posts
+    admin.resources :posts, :collection => {:preview => :post}
     admin.resources :tags
   end
 end

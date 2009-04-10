@@ -35,6 +35,10 @@ module Twibblr
         end
       end
       
+      def preview
+        @post = Post.new(params[:post])
+        render :partial => 'preview', :layout => false
+      end      
     end
   end
 end
