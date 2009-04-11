@@ -5,26 +5,48 @@ module ::Twibblr
     abort "Please run `rake twibblr:install` to setup the necessary files for Twibblr"
   end
   
-  def self.renderer
-    empty = Class.new do
-      attr_accessor :to_html
-      def initialize(body); self.to_html = "!!! #{body} !!!"; end
+  class ReturnRenderer
+    attr_accessor :to_html
+    def initialize(body)
+      self.to_html = "!!! #{body} !!!"
     end
+  end
     
-    @@renderer ||= begin
-      case Config['renderer']
-      when 'markdown'
-        empty
-      when 'textile'
-        require 'RedCloth'
-        RedCloth
-      when nil then empty        
-      else raise "Unknown renderer"
-      end          
-    end
+  
+  def self.renderer
+    @@renderer ||= load_renderer
   end
   
   def self.root
     Plugin.directory
+  end
+  
+  protected
+  
+  def self.load_renderer
+    case r = Config['renderer']
+    when 'markdown', :markdown
+      %w{Maruku RDiscount BlueCloth PEGMarkdown/peg_mardown}.each do |lib|
+        begin
+          require lib.downcase
+          return lib.constantize
+        rescue MissingSourceFile
+        end
+      end
+    when 'textile', :textile
+      require 'RedCloth'
+      return RedCloth
+    when nil then return ReturnRenderer
+    else
+      begin
+        require r.to_s
+        return r.camelize.constantize
+      rescue MissingSourceFile # do nothing, exception raised below
+      rescue NameError
+        raise "Found renderer #{r} but could not determine class name (tried #{r.camelize.constantize})"
+      end
+    end
+    
+    raise "No such renderer: #{r}"
   end
 end

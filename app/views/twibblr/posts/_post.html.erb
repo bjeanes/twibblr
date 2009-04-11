@@ -8,7 +8,7 @@
   </p>
   <div class="entry">
     <% if controller.action_name == "show" %>
-      <%= simple_format(post.body) %>
+      <%= post.html_body %>
     <% else %>
       <%= truncate(simple_format(post.body), 250, ' ... (continued)') %>
     <% end %>

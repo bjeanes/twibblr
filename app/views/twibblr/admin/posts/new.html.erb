@@ -15,11 +15,19 @@
 <% end %>
 
 <div id="preview">
-  
+  <%= render :partial => 'twibblr/admin/posts/preview' %>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $('#post_body').keypress(function(){
-    $('#preview').load("<%= preview_admin_posts_path %>", $('#admin_new_post_form').serializeArray());
+  var update = false;
+
+  $('#post_body, #post_title').keypress(function(){
+    update = true;
+  });
+  
+  $.timer(1000, function(timer) {
+    if(update) {
+      $('#preview').load("<%= preview_admin_posts_path %>", $('#admin_new_post_form').serializeArray());
+    }
   });
 </script>
